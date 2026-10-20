@@ -1,69 +1,39 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Activity, ArrowRight, ShieldCheck, Terminal } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative min-h-screen overflow-hidden bg-[#050507] px-5 py-6 text-foreground sm:px-8 sm:py-8">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgb(34_211_238/4%)_1px,transparent_1px),linear-gradient(90deg,rgb(34_211_238/4%)_1px,transparent_1px)] bg-size-[42px_42px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgb(34_211_238/13%),transparent_30%),radial-gradient(circle_at_88%_78%,rgb(240_82_180/10%),transparent_28%)]" />
+      <div className="relative mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col justify-between sm:min-h-[calc(100vh-4rem)]">
+        <header className="flex items-center justify-between border-b border-cyan-300/15 pb-5">
+          <div className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300 sm:text-sm"><ShieldCheck className="size-5" /> Secure by Design</div>
+          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500 sm:gap-6"><span className="flex items-center gap-2 text-emerald-300"><span className="size-1.5 animate-pulse rounded-full bg-emerald-300 shadow-[0_0_10px_#a8ff78]" /> SYSTEM ONLINE</span><Link className="text-cyan-300 underline underline-offset-4 transition-colors hover:text-white" href="/login">Entrar</Link></div>
+        </header>
+
+        <section className="grid items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-24">
+          <div>
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.24em] text-fuchsia-300">Laboratório de aplicações seguras // 01</p>
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-8xl">Segurança como ponto de partida.</h1>
+            <p className="mt-7 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">Explore um fluxo de autenticação construído com acesso mínimo, sessões curtas e validação em todas as fronteiras.</p>
+            <Link className={`${buttonVariants({ size: "lg" })} mt-8`} href="/login">Acessar laboratório <ArrowRight /></Link>
+          </div>
+
+          <div className="border border-cyan-300/20 bg-[#080a0e]/85 p-5 font-mono shadow-[0_0_80px_rgb(34_211_238/10%)] backdrop-blur-xl sm:p-6">
+            <div className="mb-6 flex items-center justify-between border-b border-cyan-300/15 pb-4 text-[10px] uppercase tracking-[0.2em] text-slate-500"><span className="flex items-center gap-2 text-cyan-300"><Terminal className="size-4" /> telemetry://access</span><Activity className="size-4 text-fuchsia-300" /></div>
+            <div className="space-y-4 text-xs leading-5">
+              <div className="flex justify-between gap-4 text-slate-500"><span>SESSION_POLICY</span><span className="text-emerald-300">SHORT_LIVED</span></div>
+              <div className="flex justify-between gap-4 text-slate-500"><span>ACCESS_SCOPE</span><span className="text-cyan-300">MINIMUM_REQUIRED</span></div>
+              <div className="flex justify-between gap-4 text-slate-500"><span>BOUNDARY_CHECK</span><span className="text-fuchsia-300">ENFORCED</span></div>
+              <div className="mt-6 border-t border-cyan-300/15 pt-4 text-slate-600"><span className="text-emerald-300">$</span> initialize_secure_flow<span className="ml-1 animate-pulse text-cyan-300">_</span></div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-cyan-300/15 pt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500"><span>OWASP TOP 10:2025</span><span className="text-fuchsia-300">A01 · A05 · A07</span><span>SECURE BY DESIGN</span></footer>
+      </div>
+    </main>
   );
 }
