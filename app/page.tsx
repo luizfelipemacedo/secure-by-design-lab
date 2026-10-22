@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-cyan-300/15 pt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500"><span>OWASP TOP 10:2025</span><span className="text-fuchsia-300">A01 · A05 · A07</span><span>SECURE BY DESIGN</span></footer>
+        <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-cyan-300/15 pt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500"><span>OWASP TOP 10:2025</span><span className="text-fuchsia-300">A01 · A05 · A07</span><Link className="hover:underline hover:underline-offset-4 transition-colors hover:text-white" href="https://github.com/luizfelipemacedo" target="_blank" rel="noopener noreferrer">DEVELOPED BY LUIZFELIPEMACEDO</Link></footer>
       </div>
     </main>
   );
