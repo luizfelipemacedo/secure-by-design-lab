@@ -1,0 +1,45 @@
+name: Deploy Continuo (CI/CD) - OCI Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build e Deploy no Servidor Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Executar Deploy via SSH no Servidor
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            # 1. Navegar até a pasta da aplicação
+            cd secure-by-design-lab
+
+            # 2. Atualizar o repositório local
+            git fetch origin main
+            git reset --hard origin/main
+
+            # 3. Garantir que o pnpm esteja disponível no path da sessão SSH
+            export PATH=$PATH:/usr/local/bin:~/.local/share/pnpm
+
+            # 4. Instalar dependências com pnpm (equivalente ao npm ci)
+            pnpm install --frozen-lockfile
+
+            # 5. Gerar a build do Next.js
+            pnpm run build
+
+            # 6. Reiniciar a aplicação no PM2 sem downtime
+            pm2 reload nextjs-app --update-env || pm2 start pnpm --name "nextjs-app" -- start
+
+            # 7. Salvar estado do PM2
+            pm2 save
